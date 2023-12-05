@@ -1,5 +1,5 @@
 import xml.etree.ElementTree as ET
-
+#mukodik a github dejomost
 def parse_knowledge_base(xml_content):
     # Initialize an empty dictionary to store the knowledge base
     knowledge_base = {'facts': [], 'rules': []}
