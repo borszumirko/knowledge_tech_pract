@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+
+<knowledge_base>
+
+    <recRule>
+        <if>
+            <water>lake</water>
+            <depth>more than 5m</depth>
+            <weather>sunny</weather>
+        </if>
+        <then>
+            <technique>Spinnerbait</technique>
+            <fish>Bass</fish>
+        </then>
+    </recRule>
+
+    <recRule>
+        <if>
+            <water>river</water>
+            <depth>less than 5m</depth>
+            <weather>rainy</weather>
+            <waterBottom>muddy</waterBottom>
+        </if>
+        <then>
+            <technique>bottom fishing</technique>
+            <fish>Carp</fish>
+        </then>
+    </recRule>
+
+    <rule>
+        <if>
+            <plantOnShore>reeds</plantOnShore>
+        </if>
+        <then>
+            <waterBottom>muddy</waterBottom>
+        </then>
+    </rule>
+
+    <rule>
+        <if>
+            <plantOnShore>trees</plantOnShore>
+        </if>
+        <then>
+            <waterBottom>gravel</waterBottom>
+        </then>
+    </rule>
+
+
+    <fact>
+        <water>river</water>
+        <depth>less than 5m</depth>
+        <weather>rainy</weather>
+        <plantOnShore>reeds</plantOnShore>
+    </fact>
+    
+
+</knowledge_base>
