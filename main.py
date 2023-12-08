@@ -25,11 +25,10 @@ def print_KB(knowledge_base):
 def main():
 
     root = tk.Tk()
-    app = Questions(root)
+    questions = Questions(root)
     root.mainloop()
 
-    # After the Tkinter main loop, you can access the selected choices
-    selected_choices = app.get_selected_choices()
+    selected_choices = questions.get_selected_choices()
 
     # Read XML data
     xml_file_path = 'fishKB.xml'

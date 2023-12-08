@@ -10,7 +10,6 @@ class Questions:
             {"question": "Do you see any plants at the shore?", "choices": ["reeds", "trees"]},
             {"question": "How deep is the water?", "choices": ["more than 5m", "less than 5m"]},
             {"question": "What is the weather like?", "choices": ["rainy", "sunny"]},
-            # Add more questions as needed
         ]
 
         self.current_question_index = 0
@@ -80,8 +79,8 @@ class Questions:
         self.display_question()
 
     def show_summary(self):
-        # No more questions, display a summary or perform some other action
-        summary_label = tk.Label(self.master, text="Questionnaire completed! Here are your choices:")
+        # No more questions, display a summary
+        summary_label = tk.Label(self.master, text="Questionnaire completed!")
         summary_label.pack()
 
         # Update the listbox in the separate frame with the final choices
