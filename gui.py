@@ -75,18 +75,16 @@ class Questions:
             self.question_label.pack(pady=10)
 
             # Display Choices
-            self.choice_var = tk.StringVar(value=question_data["choices"][0])
+            self.choice_var = tk.StringVar(value="Choose an option")
             self.choices_menu = tk.OptionMenu(self.master, self.choice_var, *question_data["choices"])
             self.choices_menu.pack(pady=10)
 
             menu = self.choices_menu.nametowidget(self.choices_menu.menuname)
-            menu.configure(font=("Helvetica", 12, "bold"), background="khaki")  # Adjust font and color as needed
+            menu.configure(font=("Helvetica", 12, "bold"), background="khaki") 
 
             # Configure individual items in the menu
             for item in menu.winfo_children():
-                item.configure(font=("Helvetica", 12, "bold"), background="khaki")  # Adjust font and color as needed
-
-
+                item.configure(font=("Helvetica", 12, "bold"), background="khaki")
 
             # Next Question button
             self.next_button = tk.Button(self.master, text="Next Question", font=("Helvetica", 12, "bold"),command=self.next_question, bg="gray", fg="gray", bd=5)
@@ -97,6 +95,10 @@ class Questions:
             self.choice_var.trace_add('write', lambda *args: self.update_button_color())
         else:
             self.show_summary()
+
+
+
+
 
     def update_button_color(self):
         # Change the button color when a choice is made

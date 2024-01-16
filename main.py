@@ -32,7 +32,7 @@ def main():
     
     #canvas = tk.Canvas(root, bg="lightblue")
     #canvas.pack(fill=tk.BOTH, expand=True)
-    image_path = "waves2.png"  # Replace with the actual path to your image file
+    image_path = "waves.png"  # Replace with the actual path to your image file
     custom_image = tk.PhotoImage(file=image_path)
     image_width = custom_image.width()
     image_height = custom_image.height()
