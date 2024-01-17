@@ -1,57 +1,443 @@
 <?xml version="1.0"?>
 
 <knowledge_base>
-
-    <recRule>
-        <if>
-            <water>lake</water>
-            <depth>more than 5m</depth>
-            <weather>sunny</weather>
-        </if>
-        <then>
-            <technique>Spinnerbait</technique>
-            <fish>Bass</fish>
-        </then>
-    </recRule>
-
-    <recRule>
-        <if>
-            <water>river</water>
-            <depth>less than 5m</depth>
-            <weather>rainy</weather>
-            <waterBottom>muddy</waterBottom>
-        </if>
-        <then>
-            <technique>bottom fishing</technique>
-            <fish>Carp</fish>
-        </then>
-    </recRule>
-
     <rule>
         <if>
-            <plantOnShore>reeds</plantOnShore>
+            <temperature>getting warmer</temperature>
         </if>
         <then>
-            <waterBottom>muddy</waterBottom>
+            <front>warm</front>
         </then>
     </rule>
 
     <rule>
         <if>
-            <plantOnShore>trees</plantOnShore>
+            <temperature>getting colder</temperature>
         </if>
         <then>
-            <waterBottom>gravel</waterBottom>
+            <front>cold</front>
+        </then>
+    </rule>
+
+    <rule>
+        <if>
+            <temperature>did not change</temperature>
+        </if>
+        <then>
+            <front>neutral</front>
         </then>
     </rule>
 
 
-    <fact>
-        <water>river</water>
-        <depth>less than 5m</depth>
-        <weather>rainy</weather>
-        <plantOnShore>reeds</plantOnShore>
-    </fact>
-    
+
+    <recRule>
+        <if>
+            <water>running water</water>
+            <waterTemp>below 10C</waterTemp>
+            <front>warm</front>
+            <time>day</time>
+        </if>
+        <then>
+            <technique>flyfishing rod</technique>
+            <bait>fly</bait>
+            <technique>spinner rod</technique>
+            <bait>spinnerbait</bait>
+            <technique>match rod</technique>
+            <bait>worm</bait>
+        </then>
+    </recRule>
+
+    <recRule>
+        <if>
+            <water>running water</water>
+            <waterTemp>below 10C</waterTemp>
+            <front>warm</front>
+            <time>night</time>
+        </if>
+        <then>
+            <technique>catfish rod</technique>
+            <bait>catfish lure</bait>
+            <technique>spinner rod</technique>
+            <bait>spinnerbait</bait>
+        </then>
+    </recRule>
+
+    <recRule>
+        <if>
+            <water>running water</water>
+            <waterTemp>below 10C</waterTemp>
+            <front>cold</front>
+            <time>day</time>
+        </if>
+        <then>
+            <technique>flyfishing rod</technique>
+            <bait>fly</bait>
+            <technique>match rod</technique>
+            <bait>maggot</bait>
+            <technique>spinner rod</technique>
+            <bait>spinnerbait</bait>
+        </then>
+    </recRule>
+
+    <recRule>
+        <if>
+            <water>running water</water>
+            <waterTemp>below 10C</waterTemp>
+            <front>cold</front>
+            <time>night</time>
+        </if>
+        <then>
+            <technique>catfish rod</technique>
+            <bait>catfish lure</bait>
+            <technique>feeder rod</technique>
+            <bait>corn</bait>
+        </then>
+    </recRule>
+
+    <recRule>
+        <if>
+            <water>running water</water>
+            <waterTemp>below 10C</waterTemp>
+            <front>neutral</front>
+            <time>day</time>
+        </if>
+        <then>
+            <technique>flyfishing rod</technique>
+            <bait>fly</bait>
+            <technique>match rod</technique>
+            <bait>maggot</bait>
+            <technique>feeder rod</technique>
+            <bait>corn</bait>
+            
+        </then>
+    </recRule>
+
+    <recRule>
+        <if>
+            <water>running water</water>
+            <waterTemp>below 10C</waterTemp>
+            <front>neutral</front>
+            <time>night</time>
+        </if>
+        <then>
+            <technique>catfish rod</technique>
+            <bait>catfish lure</bait>
+            <technique>spinner rod</technique>
+            <bait>spinnerbait</bait>
+        </then>
+    </recRule>
+
+    <recRule>
+        <if>
+            <water>running water</water>
+            <waterTemp>above 10C</waterTemp>
+            <front>warm</front>
+            <time>day</time>
+        </if>
+        <then>
+            <technique>match rod</technique>
+            <bait>maggot</bait>
+        </then>
+    </recRule>
+
+    <recRule>
+        <if>
+            <water>running water</water>
+            <waterTemp>above 10C</waterTemp>
+            <front>warm</front>
+            <time>night</time>
+        </if>
+        <then>
+            <technique>catfish rod</technique>
+            <bait>catfish lure</bait>
+        </then>
+    </recRule> 
+
+    <recRule>
+        <if>
+            <water>running water</water>
+            <waterTemp>above 10C</waterTemp>
+            <front>cold</front>
+            <time>day</time>
+        </if>
+        <then>
+            <technique>match rod</technique>
+            <bait>maggot</bait>
+            <technique>spinner rod</technique>
+            <bait>spinnerbait</bait>
+            <technique>flyfishing rod</technique>
+            <bait>fly</bait>
+        </then>
+    </recRule>
+
+    <recRule>
+        <if>
+            <water>running water</water>
+            <waterTemp>above 10C</waterTemp>
+            <front>cold</front>
+            <time>night</time>
+        </if>
+        <then>
+            <technique>catfish rod</technique>
+            <bait>catfish lure</bait>
+            <technique>spinner rod</technique>
+            <bait>spinnerbait</bait>
+            <technique>carp rod</technique>
+            <bait>stinky boilie</bait>
+        </then>
+    </recRule>
+
+    <recRule>
+        <if>
+            <water>running water</water>
+            <waterTemp>above 10C</waterTemp>
+            <front>neutral</front>
+            <time>day</time>
+        </if>
+        <then>
+            <technique>flyfishing rod</technique>
+            <bait>fly</bait>
+            <technique>match rod</technique>
+            <bait>maggot</bait>
+        </then>
+    </recRule>
+
+    <recRule>
+        <if>
+            <water>running water</water>
+            <waterTemp>above 10C</waterTemp>
+            <front>neutral</front>
+            <time>night</time>
+        </if>
+        <then>
+            <technique>carp rod</technique>
+            <bait>stinky boilie</bait>
+        </then>
+    </recRule>
+
+    <recRule>
+        <if>
+            <water>standing water</water>
+            <waterTemp>below 10C</waterTemp>
+            <front>warm</front>
+            <time>day</time>
+        </if>
+        <then>
+            <technique>carp rod</technique>
+            <bait>pellet</bait>
+            <technique>match rod</technique>
+            <bait>maggot</bait>
+            
+        </then>
+    </recRule>
+
+    <recRule>
+        <if>
+            <water>standing water</water>
+            <waterTemp>below 10C</waterTemp>
+            <front>warm</front>
+            <time>night</time>
+        </if>
+        <then>
+            <technique>carp rod</technique>
+            <bait>stinky boilie</bait>
+            <technique>carp rod</technique>
+            <bait>pellet</bait>
+            
+        </then>
+    </recRule>
+
+    <recRule>
+        <if>
+            <water>standing water</water>
+            <waterTemp>below 10C</waterTemp>
+            <front>cold</front>
+            <time>day</time>
+        </if>
+        <then>
+            <technique>match rod</technique>
+            <bait>maggot</bait>
+            <technique>match rod</technique>
+            <bait>worm</bait>
+        </then>
+    </recRule>
+
+    <recRule>
+        <if>
+            <water>standing water</water>
+            <waterTemp>below 10C</waterTemp>
+            <front>cold</front>
+            <time>night</time>
+        </if>
+        <then>
+            <technique>carp rod</technique>
+            <bait>sweet boilie</bait>
+            <technique>carp rod</technique>
+            <bait>pellet</bait>
+            <technique>spinner rod</technique>
+            <bait>spinnerbait</bait>
+            <technique>catfish rod</technique>
+            <bait>catfish lure</bait>
+        </then>
+    </recRule>
+
+    <recRule>
+        <if>
+            <water>standing water</water>
+            <waterTemp>below 10C</waterTemp>
+            <front>neutral</front>
+            <time>day</time>
+        </if>
+        <then>
+            <technique>feeder rod</technique>
+            <bait>pellet</bait>
+            <technique>match rod</technique>
+            <bait>maggot</bait>
+            <technique>match rod</technique>
+            <bait>worm</bait>
+        </then>
+    </recRule>
+
+    <recRule>
+        <if>
+            <water>standing water</water>
+            <waterTemp>below 10C</waterTemp>
+            <front>neutral</front>
+            <time>night</time>
+        </if>
+        <then>
+            <technique>catfish rod</technique>
+            <bait>catfish lure</bait>
+            <technique>spinner rod</technique>
+            <bait>spinnerbait</bait>
+            <technique>carp rod</technique>
+            <bait>boilie</bait>
+        </then>
+    </recRule>
+
+    <recRule>
+        <if>
+            <water>standing water</water>
+            <waterTemp>above 10C</waterTemp>
+            <front>warm</front>
+            <time>day</time>
+        </if>
+        <then>
+            <technique>carp rod</technique>
+            <bait>boilie</bait>
+            <technique>match rod</technique>
+            <bait>maggot</bait>
+            <technique>feeder rod</technique>
+            <bait>pellet</bait>
+            <technique>match rod</technique>
+            <bait>worm</bait>
+        </then>
+    </recRule>
+
+    <recRule>
+        <if>
+            <water>standing water</water>
+            <waterTemp>above 10C</waterTemp>
+            <front>warm</front>
+            <time>night</time>
+        </if>
+        <then>
+            <technique>carp rod</technique>
+            <bait>stinky boilie</bait>
+            <technique>carp rod</technique>
+            <bait>pellet</bait>
+        </then>
+    </recRule>
+
+    <recRule>
+        <if>
+            <water>standing water</water>
+            <waterTemp>above 10C</waterTemp>
+            <front>cold</front>
+            <time>day</time>
+        </if>
+        <then>
+            <technique>carp rod</technique>
+            <bait>pellet</bait>
+            <technique>match rod</technique>
+            <bait>maggot</bait>
+            <technique>spinner rod</technique>
+            <bait>spinnerbait</bait>
+            <technique>feeder rod</technique>
+            <bait>pellet</bait>
+            <technique>feeder rod</technique>
+            <bait>corn</bait>
+            <technique>match rod</technique>
+            <bait>worm</bait>
+        </then>
+    </recRule>
+
+    <recRule>
+        <if>
+            <water>standing water</water>
+            <waterTemp>above 10C</waterTemp>
+            <front>cold</front>
+            <time>night</time>
+        </if>
+        <then>
+            <technique>carp rod</technique>
+            <bait>boilie</bait>
+            <technique>carp rod</technique>
+            <bait>pellet</bait>
+            <technique>catfish rod</technique>
+            <bait>catfish lure</bait>
+            <technique>feeder rod</technique>
+            <bait>pellet</bait>
+            <technique>feeder rod</technique>
+            <bait>corn</bait>
+            <technique>spinner rod</technique>
+            <bait>spinnerbait</bait>
+            <technique>match rod</technique>
+            <bait>worm</bait>
+            <technique>match rod</technique>
+            <bait>maggot</bait>
+        </then>
+    </recRule>
+
+    <recRule>
+        <if>
+            <water>standing water</water>
+            <waterTemp>above 10C</waterTemp>
+            <front>neutral</front>
+            <time>day</time>
+        </if>
+        <then>
+            <technique>carp rod</technique>
+            <bait>pellet</bait>
+            <technique>feeder rod</technique>
+            <bait>pellet</bait>
+            <technique>match rod</technique>
+            <bait>maggot</bait>
+            <technique>match rod</technique>
+            <bait>worm</bait>
+            <technique>feeder rod</technique>
+            <bait>corn</bait>
+        </then>
+    </recRule>
+
+    <recRule>
+        <if>
+            <water>standing water</water>
+            <waterTemp>above 10C</waterTemp>
+            <front>neutral</front>
+            <time>night</time>
+        </if>
+        <then>
+            <technique>carp rod</technique>
+            <bait>stinky boilie</bait>
+            <technique>carp rod</technique>
+            <bait>pellet</bait>
+            <technique>feeder rod</technique>
+            <bait>pellet</bait>
+            <technique>spinner rod</technique>
+            <bait>spinnerbait</bait>
+        </then>
+    </recRule>
+
 
 </knowledge_base>

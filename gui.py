@@ -1,6 +1,30 @@
 import tkinter as tk
 from forwChain import forward_chaining, find_recommendations
 from parseKB import read_xml_from_file, parse_knowledge_base
+from tkinter import PhotoImage
+from PIL import Image, ImageTk
+
+
+
+def prtDict(dict):
+    print('---')
+    for rule in dict:
+        for key, value in rule.items():
+            print(f"{key}: {value}")
+        print('---')
+
+def print_KB(knowledge_base):
+    print('Rules:')
+    prtDict(knowledge_base['rules'])
+    print('Recommendation rules:')
+    prtDict(knowledge_base['recRules'])
+    print('Facts:')
+    print(knowledge_base['facts'])
+    print('---')
+    print('Recommendations:')
+    print(knowledge_base['recommendations'])
+
+
 
 class Questions:
     def __init__(self, master):
@@ -8,14 +32,17 @@ class Questions:
         self.master.title("Fishing Method Recommendation System")
 
         self.questions = [
-            {"question": "At what kind of body of water are you fishing?", "choices": ["lake", "river", "pond", "sea", "ocean"]},
-            {"question": "Do you see any plants at the shore?", "choices": ["reeds", "trees"]},
-            {"question": "How deep is the water?", "choices": ["more than 5m", "less than 5m"]},
-            {"question": "What is the weather like?", "choices": ["rainy", "sunny"]},
+            {"question": "Are you fishing at running water or standing water?", "choices": ["running water", "standing water"]},
+            {"question": "Is the water temperature below or above 10C", "choices": ["below 10C", "above 10C"]},
+            {"question": "How did the temperature change in the previous days?", "choices": ["getting warmer", "getting colder", "did not change"]},
+            {"question": "Are you trying to fish during day or nighttime", "choices": ["day", "night"]},
         ]
 
         self.current_question_index = 0
         self.selected_choices = []
+
+        self.images = []  # List to store PhotoImage instances
+
 
         # GUI elements
         self.question_label = None
@@ -30,7 +57,8 @@ class Questions:
     def create_listbox_frame(self):
         # Create a frame to hold the listbox
         self.listbox_frame = tk.Frame(self.master)
-        self.listbox_frame.pack(side="left", padx=10)
+        #self.listbox_frame.pack(side="left", padx=10)
+        self.listbox_frame.place(x=0,y=0)
 
         # Display List
         self.listbox = tk.Listbox(self.listbox_frame, font=("Helvetica", 12, "bold"), bg="khaki", fg="black", bd=3)
@@ -127,11 +155,17 @@ class Questions:
         forward_chaining(knowledge_base)
         find_recommendations(knowledge_base)
 
-        #print_KB(knowledge_base)
         self.display_recommendations(knowledge_base['recommendations'])
 
     def get_selected_choices(self):
         return self.selected_choices
+
+    def get_filename(self, rec):
+        if (rec == "sweet boilie" or rec == "stinky boilie"):
+            return "boilie.png"
+        else:
+            return "images/" + rec + ".png"
+
 
     def display_recommendations(self, recommendations):
         # Clear existing widgets
@@ -151,9 +185,44 @@ class Questions:
         recommendations_text.pack(pady=10)
 
         # Insert recommendations into the text widget
+        recs = ""
         for recommendation in recommendations:
-            recommendations_text.insert("1.0", recommendation[0] + ", " + recommendation[1] + '\n')
+            for i, r in enumerate(recommendation):
+                if (i%2 == 0):
+                    recs += r + " - "
+                else:
+                    recs += r + '\n'
+
+        recommendations_text.insert("1.0",recs)
+        
+        # Adjust the width and height of the text widget based on the content
+        width = max(len(line) for line in recs.split('\n')) + 2
+        height = recs.count('\n') + 1  # Number of lines
+
+        recommendations_text.config(width=width, height=height)
         recommendations_text.config(state=tk.DISABLED)
+
+        col = 50
+        row = 270
+        for recommendation in recommendations:
+            for r in recommendation:
+                image = PhotoImage(file=self.get_filename(r))
+                self.images.append(image)
+                label = tk.Label(self.master, image=image,
+                                compound=tk.TOP, text=r,
+                                font=("Helvetica", 12), bg="khaki", bd=3)
+
+                
+                label.place(x=col, y=row)
+                if len(self.images) % 2 == 0:
+                    col += image.width() + 50
+                else:
+                    col += image.width()
+                if len(self.images)%8 == 0:
+                    row += 270
+                    col = 50
+
+
 
 
 

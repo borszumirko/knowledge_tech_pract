@@ -1,5 +1,3 @@
-from forwChain import forward_chaining, find_recommendations
-from parseKB import read_xml_from_file, parse_knowledge_base
 from gui import Questions
 import tkinter as tk
 from tkinter import font
@@ -32,7 +30,7 @@ def main():
     
     #canvas = tk.Canvas(root, bg="lightblue")
     #canvas.pack(fill=tk.BOTH, expand=True)
-    image_path = "waves.png"  # Replace with the actual path to your image file
+    image_path = "images/waves2.png"  # Replace with the actual path to your image file
     custom_image = tk.PhotoImage(file=image_path)
     image_width = custom_image.width()
     image_height = custom_image.height()
