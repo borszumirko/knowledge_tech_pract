@@ -37,6 +37,24 @@ class Questions:
             {"question": "How did the temperature change in the previous days?", "choices": ["getting warmer", "getting colder", "did not change"]},
             {"question": "Are you trying to fish during day or nighttime", "choices": ["day", "night"]},
         ]
+        self.setup()
+
+    def setup(self):
+        image_path = "images/waves2.png"
+        waves_image = tk.PhotoImage(file=image_path)
+        image_width = waves_image.width()
+        image_height = waves_image.height()
+
+        # Set the size of the Tkinter window to match the image dimensions
+        self.master.geometry(f"{image_width}x{image_height}")
+
+        # Create a label with the image
+        image_label = tk.Label(self.master, image=waves_image)
+        image_label.place(relwidth=1, relheight=1)
+        # keep a reference to prevent garbage collection
+        image_label.image = waves_image
+
+
 
         self.current_question_index = 0
         self.selected_choices = []
@@ -53,6 +71,19 @@ class Questions:
 
         self.create_listbox_frame()
         self.display_question()
+        self.display_reset_button()
+
+    def display_reset_button(self):
+            self.restart_button = tk.Button(self.master, text="Restart Quiz", font=("Helvetica", 12, "bold"),command=self.reset_quiz, bg="khaki", fg="black", bd=5)
+            self.restart_button.place(x=1700, y=50)
+
+
+    def reset_quiz(self):
+        for widget in self.master.winfo_children():
+            widget.destroy()
+        self.setup()
+
+
 
     def create_listbox_frame(self):
         # Create a frame to hold the listbox
@@ -80,10 +111,6 @@ class Questions:
 
         # Display the next question
         self.display_question()
-
-
-
-
 
     def display_question(self):
         # prevent next question from moving down
@@ -162,7 +189,7 @@ class Questions:
 
     def get_filename(self, rec):
         if (rec == "sweet boilie" or rec == "stinky boilie"):
-            return "boilie.png"
+            return "images/boilie.png"
         else:
             return "images/" + rec + ".png"
 

@@ -26,22 +26,6 @@ def print_KB(knowledge_base):
 
 def main():
     root = tk.Tk()
-
-    
-    #canvas = tk.Canvas(root, bg="lightblue")
-    #canvas.pack(fill=tk.BOTH, expand=True)
-    image_path = "images/waves2.png"  # Replace with the actual path to your image file
-    custom_image = tk.PhotoImage(file=image_path)
-    image_width = custom_image.width()
-    image_height = custom_image.height()
-
-    # Set the size of the Tkinter window to match the image dimensions
-    root.geometry(f"{image_width}x{image_height}")
-
-
-    # Create a label with the image
-    image_label = tk.Label(root, image=custom_image)
-    image_label.place(relwidth=1, relheight=1)
     questions = Questions(root)
     root.mainloop()
 
