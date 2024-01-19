@@ -28,13 +28,51 @@
         </then>
     </rule>
 
+    <rule>
+        <if>
+            <front>warm</front>
+        </if>
+        <then>
+            <air_pressure>decline</air_pressure>
+        </then>
+    </rule>
+
+    <rule>
+        <if>
+            <front>cold</front>
+        </if>
+        <then>
+            <air_pressure>rise</air_pressure>
+        </then>
+    </rule>
+
+    <rule>
+        <if>
+            <air_pressure>decline</air_pressure>
+        </if>
+        <then>
+            <oxygenlevel>low</oxygenlevel>
+        </then>
+    </rule>
+
+    <rule>
+        <if>
+            <air_pressure>rise</air_pressure>
+        </if>
+        <then>
+            <oxygenlevel>high</oxygenlevel>
+        </then>
+    </rule>
+
+
+
 
 
     <recRule>
         <if>
             <water>running water</water>
             <waterTemp>below 10C</waterTemp>
-            <front>warm</front>
+            <oxygenlevel>low</oxygenlevel>
             <time>day</time>
         </if>
         <then>
@@ -51,7 +89,7 @@
         <if>
             <water>running water</water>
             <waterTemp>below 10C</waterTemp>
-            <front>warm</front>
+            <oxygenlevel>low</oxygenlevel>
             <time>night</time>
         </if>
         <then>
@@ -66,7 +104,7 @@
         <if>
             <water>running water</water>
             <waterTemp>below 10C</waterTemp>
-            <front>cold</front>
+            <oxygenlevel>high</oxygenlevel>
             <time>day</time>
         </if>
         <then>
@@ -83,7 +121,7 @@
         <if>
             <water>running water</water>
             <waterTemp>below 10C</waterTemp>
-            <front>cold</front>
+            <oxygenlevel>high</oxygenlevel>
             <time>night</time>
         </if>
         <then>
@@ -131,7 +169,7 @@
         <if>
             <water>running water</water>
             <waterTemp>above 10C</waterTemp>
-            <front>warm</front>
+            <oxygenlevel>low</oxygenlevel>
             <time>day</time>
         </if>
         <then>
@@ -144,7 +182,7 @@
         <if>
             <water>running water</water>
             <waterTemp>above 10C</waterTemp>
-            <front>warm</front>
+            <oxygenlevel>low</oxygenlevel>
             <time>night</time>
         </if>
         <then>
@@ -157,7 +195,7 @@
         <if>
             <water>running water</water>
             <waterTemp>above 10C</waterTemp>
-            <front>cold</front>
+            <oxygenlevel>high</oxygenlevel>
             <time>day</time>
         </if>
         <then>
@@ -174,7 +212,7 @@
         <if>
             <water>running water</water>
             <waterTemp>above 10C</waterTemp>
-            <front>cold</front>
+            <oxygenlevel>high</oxygenlevel>
             <time>night</time>
         </if>
         <then>
@@ -219,7 +257,7 @@
         <if>
             <water>standing water</water>
             <waterTemp>below 10C</waterTemp>
-            <front>warm</front>
+            <oxygenlevel>low</oxygenlevel>
             <time>day</time>
         </if>
         <then>
@@ -235,7 +273,7 @@
         <if>
             <water>standing water</water>
             <waterTemp>below 10C</waterTemp>
-            <front>warm</front>
+            <oxygenlevel>low</oxygenlevel>
             <time>night</time>
         </if>
         <then>
@@ -251,7 +289,7 @@
         <if>
             <water>standing water</water>
             <waterTemp>below 10C</waterTemp>
-            <front>cold</front>
+            <oxygenlevel>high</oxygenlevel>
             <time>day</time>
         </if>
         <then>
@@ -266,7 +304,7 @@
         <if>
             <water>standing water</water>
             <waterTemp>below 10C</waterTemp>
-            <front>cold</front>
+            <oxygenlevel>high</oxygenlevel>
             <time>night</time>
         </if>
         <then>
@@ -319,7 +357,7 @@
         <if>
             <water>standing water</water>
             <waterTemp>above 10C</waterTemp>
-            <front>warm</front>
+            <oxygenlevel>low</oxygenlevel>
             <time>day</time>
         </if>
         <then>
@@ -338,7 +376,7 @@
         <if>
             <water>standing water</water>
             <waterTemp>above 10C</waterTemp>
-            <front>warm</front>
+            <oxygenlevel>low</oxygenlevel>
             <time>night</time>
         </if>
         <then>
@@ -353,7 +391,7 @@
         <if>
             <water>standing water</water>
             <waterTemp>above 10C</waterTemp>
-            <front>cold</front>
+            <oxygenlevel>high</oxygenlevel>
             <time>day</time>
         </if>
         <then>
@@ -376,7 +414,7 @@
         <if>
             <water>standing water</water>
             <waterTemp>above 10C</waterTemp>
-            <front>cold</front>
+            <oxygenlevel>high</oxygenlevel>
             <time>night</time>
         </if>
         <then>

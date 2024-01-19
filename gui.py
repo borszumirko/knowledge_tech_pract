@@ -2,7 +2,6 @@ import tkinter as tk
 from forwChain import forward_chaining, find_recommendations
 from parseKB import read_xml_from_file, parse_knowledge_base
 from tkinter import PhotoImage
-from PIL import Image, ImageTk
 
 
 
