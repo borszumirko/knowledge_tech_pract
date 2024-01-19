@@ -1,6 +1,9 @@
 <?xml version="1.0"?>
 
 <knowledge_base>
+
+    <!-- Rules -->
+
     <rule>
         <if>
             <temperature>getting warmer</temperature>
@@ -64,9 +67,7 @@
         </then>
     </rule>
 
-
-
-
+    <!-- Recommendation rules -->
 
     <recRule>
         <if>
@@ -145,8 +146,7 @@
             <technique>match rod</technique>
             <bait>maggot</bait>
             <technique>feeder rod</technique>
-            <bait>corn</bait>
-            
+            <bait>corn</bait> 
         </then>
     </recRule>
 
@@ -476,6 +476,5 @@
             <bait>spinnerbait</bait>
         </then>
     </recRule>
-
 
 </knowledge_base>

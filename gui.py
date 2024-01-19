@@ -23,7 +23,8 @@ def print_KB(knowledge_base):
     print('Recommendations:')
     print(knowledge_base['recommendations'])
 
-
+helvFont = ("Helvetica", 12)
+helvFontBold = ("Helvetica", 12, "bold")
 
 class Questions:
     def __init__(self, master):
@@ -44,22 +45,18 @@ class Questions:
         image_width = waves_image.width()
         image_height = waves_image.height()
 
-        # Set the size of the Tkinter window to match the image dimensions
         self.master.geometry(f"{image_width}x{image_height}")
 
         # Create a label with the image
         image_label = tk.Label(self.master, image=waves_image)
         image_label.place(relwidth=1, relheight=1)
-        # keep a reference to prevent garbage collection
+
+        # Keep a reference to prevent garbage collection
         image_label.image = waves_image
-
-
 
         self.current_question_index = 0
         self.selected_choices = []
-
-        self.images = []  # List to store PhotoImage instances
-
+        self.images = []  # List to store images
 
         # GUI elements
         self.question_label = None
@@ -73,25 +70,22 @@ class Questions:
         self.display_reset_button()
 
     def display_reset_button(self):
-            self.restart_button = tk.Button(self.master, text="Restart Quiz", font=("Helvetica", 12, "bold"),command=self.reset_quiz, bg="khaki", fg="black", bd=5)
+            self.restart_button = tk.Button(self.master, text="Restart Quiz", font=helvFontBold,command=self.reset_quiz, bg="khaki", fg="black", bd=5)
             self.restart_button.place(x=1700, y=50)
 
-
+    # Reset everything
     def reset_quiz(self):
         for widget in self.master.winfo_children():
             widget.destroy()
         self.setup()
 
-
-
     def create_listbox_frame(self):
         # Create a frame to hold the listbox
         self.listbox_frame = tk.Frame(self.master)
-        #self.listbox_frame.pack(side="left", padx=10)
         self.listbox_frame.place(x=0,y=0)
 
         # Display List
-        self.listbox = tk.Listbox(self.listbox_frame, font=("Helvetica", 12, "bold"), bg="khaki", fg="black", bd=3)
+        self.listbox = tk.Listbox(self.listbox_frame, font=helvFontBold, bg="khaki", fg="black", bd=3)
         self.listbox.pack()
 
 
@@ -100,19 +94,18 @@ class Questions:
         self.selected_choices.append(selected_choice)
         self.listbox.insert(tk.END, '• ' + selected_choice)
 
-        # Move to the next question
         self.current_question_index += 1
 
-        # Update the existing widgets with new content
+        # Prepare gui for displaying next question
         self.question_label.config(text="")
         self.choices_menu.destroy()
         self.next_button.destroy()
 
-        # Display the next question
+        # New question
         self.display_question()
 
     def display_question(self):
-        # prevent next question from moving down
+        # Prevent next question from moving down
         if self.question_label:
             self.question_label.pack_forget()
         if self.choices_menu:
@@ -120,12 +113,11 @@ class Questions:
         if self.next_button:
             self.next_button.pack_forget()
 
-
         if self.current_question_index < len(self.questions):
             question_data = self.questions[self.current_question_index]
 
             # Display Question
-            self.question_label = tk.Label(self.master, text=question_data["question"], bg="khaki", font=("Helvetica", 12, "bold"), bd=3)
+            self.question_label = tk.Label(self.master, text=question_data["question"], bg="khaki", font=helvFontBold, bd=3)
             self.question_label.pack(pady=10)
 
             # Display Choices
@@ -134,14 +126,14 @@ class Questions:
             self.choices_menu.pack(pady=10)
 
             menu = self.choices_menu.nametowidget(self.choices_menu.menuname)
-            menu.configure(font=("Helvetica", 12, "bold"), background="khaki") 
+            menu.configure(font=helvFontBold, background="khaki") 
 
-            # Configure individual items in the menu
+            # Format items in menu
             for item in menu.winfo_children():
-                item.configure(font=("Helvetica", 12, "bold"), background="khaki")
+                item.configure(font=helvFontBold, background="khaki")
 
             # Next Question button
-            self.next_button = tk.Button(self.master, text="Next Question", font=("Helvetica", 12, "bold"),command=self.next_question, bg="gray", fg="gray", bd=5)
+            self.next_button = tk.Button(self.master, text="Next Question", font=helvFontBold,command=self.next_question, bg="gray", fg="gray", bd=5)
             self.next_button.pack(pady=10)
             self.next_button["state"] = tk.DISABLED
 
@@ -150,12 +142,8 @@ class Questions:
         else:
             self.show_summary()
 
-
-
-
-
     def update_button_color(self):
-        # Change the button color when a choice is made
+        # Change the button color green when a choice is made
         self.next_button["bg"] = "green"
         self.next_button["fg"] = "white"
         self.next_button["state"] = tk.NORMAL
@@ -163,11 +151,6 @@ class Questions:
 
     def show_summary(self):
         
-        # Update the listbox in the separate frame with the final choices
-        #self.listbox.delete(0, tk.END)
-        #for choice in self.selected_choices:
-        #    self.listbox.insert(tk.END, choice)
-
         selected_choices = self.get_selected_choices()
 
         # Read XML data
@@ -177,7 +160,7 @@ class Questions:
         # Parse XML
         knowledge_base = parse_knowledge_base(xml_data, selected_choices)
 
-        #print_KB(knowledge_base)
+        # Perform chaining
         forward_chaining(knowledge_base)
         find_recommendations(knowledge_base)
 
@@ -192,7 +175,6 @@ class Questions:
         else:
             return "images/" + rec + ".png"
 
-
     def display_recommendations(self, recommendations):
         # Clear existing widgets
         if self.question_label:
@@ -206,11 +188,11 @@ class Questions:
         recommendations_label = tk.Label(self.master, text="Here are your recommended fishing tecniques and baits:", font=("Helvetica", 18, "bold"), bg="khaki", bd=3)
         recommendations_label.pack(pady=10)
 
-        # Create a text widget to display recommendations
-        recommendations_text = tk.Text(self.master, height=5, width=50, font=("Helvetica", 12), bg="khaki", bd=3)
+        # Create a text to display recommendations
+        recommendations_text = tk.Text(self.master, height=5, width=50, font=helvFont, bg="khaki", bd=3)
         recommendations_text.pack(pady=10)
 
-        # Insert recommendations into the text widget
+        # Insert recommendations into the text
         recs = ""
         for recommendation in recommendations:
             for i, r in enumerate(recommendation):
@@ -221,24 +203,23 @@ class Questions:
 
         recommendations_text.insert("1.0",recs)
         
-        # Adjust the width and height of the text widget based on the content
+        # Adjust the width and height of the text based on the content
         width = max(len(line) for line in recs.split('\n')) + 2
-        height = recs.count('\n') + 1  # Number of lines
+        height = recs.count('\n') + 1
 
         recommendations_text.config(width=width, height=height)
         recommendations_text.config(state=tk.DISABLED)
 
         col = 50
         row = 270
+        # Display images with text underneath them
         for recommendation in recommendations:
             for r in recommendation:
                 image = PhotoImage(file=self.get_filename(r))
                 self.images.append(image)
                 label = tk.Label(self.master, image=image,
                                 compound=tk.TOP, text=r,
-                                font=("Helvetica", 12), bg="khaki", bd=3)
-
-                
+                                font=helvFont, bg="khaki", bd=3)
                 label.place(x=col, y=row)
                 if len(self.images) % 2 == 0:
                     col += image.width() + 50

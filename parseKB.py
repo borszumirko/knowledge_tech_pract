@@ -20,8 +20,6 @@ def parse_knowledge_base(xml_string, selected_choices):
     for element in root:
         if element.tag == 'rule':
             knowledge_base['rules'].append(parse_rule(element))
-        #elif element.tag == 'fact':
-        #    knowledge_base['facts']=(parse_fact(element))
         elif element.tag == 'recRule':
             knowledge_base['recRules'].append(parse_rule(element))
     
