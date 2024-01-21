@@ -70,7 +70,7 @@ class Questions:
         self.display_reset_button()
 
     def display_reset_button(self):
-            self.restart_button = tk.Button(self.master, text="Restart Quiz", font=helvFontBold,command=self.reset_quiz, bg="khaki", fg="black", bd=5)
+            self.restart_button = tk.Button(self.master, text="Restart", font=helvFontBold,command=self.reset_quiz, bg="khaki", fg="black", bd=5)
             self.restart_button.place(x=1700, y=50)
 
     # Reset everything
