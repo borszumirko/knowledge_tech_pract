@@ -30,10 +30,11 @@ class Questions:
         self.master.title("Fishing Method Recommendation System")
 
         self.questions = [
-            {"question": "Are you fishing at running water or standing water?", "choices": ["running water", "standing water"]},
+            {"question": "Are you fishing at running water or standing water?", "choices": ["running", "standing"]},
             {"question": "Is the running water slow (<8km/h) or fast (>8km/h)", "choices": ["slow", "fast"]},
-            {"question": "Is the standing water natural or arificial", "choices": ["natural", "artificial"]},
+            {"question": "Is the standing water natural or artificial", "choices": ["natural", "artificial"]},
             {"question": "What is the ground like at the bottom of the standing water?", "choices": ["muddy", "rocky"]},
+            {"question": "Is the body of water bigger than 0.5 square kilometer or wider than 100 meters?", "choices": ["bigger", "smaller"]},
             {"question": "What is the current season?", "choices": ["winter", "autumn", "spring", "summer"]},
             {"question": "Is there any kind of precipitation?", "choices": ["rain", "snow", "none"]},
             {"question": "Is the water temperature below or above 10C", "choices": ["below 10C", "above 10C"]},
@@ -42,7 +43,8 @@ class Questions:
             {"question": "Are you trying to fish during day or nighttime?", "choices": ["day", "night"]},
             {"question": "Is the sky sunny or are there clouds?", "choices": ["sunny", "cloudy"]},
             {"question": "How did the temperature change in the previous days?", "choices": ["getting warmer", "getting colder", "did not change"]},
-            {"question": "Is the water realatively deep (>5m) or shallow (<5m)?", "choices": ["deep", "shallow"]}
+            {"question": "Is the water relatively deep (>5m) or shallow (<5m)?", "choices": ["deep", "shallow"]},
+            {"question": "Is the water relatively deep (>2m) or shallow (<2m)?", "choices": ["deep", "shallow"]},
         ]
         self.setup()
 
@@ -77,8 +79,8 @@ class Questions:
         self.display_reset_button()
 
     def display_reset_button(self):
-            self.restart_button = tk.Button(self.master, text="Restart", font=helvFontBold,command=self.reset_quiz, bg="khaki", fg="black", bd=5)
-            self.restart_button.place(x=1700, y=50)
+        self.restart_button = tk.Button(self.master, text="Restart", font=helvFontBold,command=self.reset_quiz, bg="khaki", fg="black", bd=5)
+        self.restart_button.place(x=1700, y=50)
 
     # Reset everything
     def reset_quiz(self):
@@ -92,11 +94,12 @@ class Questions:
         self.listbox_frame.place(x=0,y=0)
 
         # Display List
-        self.listbox = tk.Listbox(self.listbox_frame, font=helvFontBold, bg="khaki", fg="black", bd=3)
+        self.listbox = tk.Listbox(self.listbox_frame, font=helvFontBold, bg="khaki", fg="black", bd=3, height=20)
         self.listbox.pack()
 
     def adjust_question_index(self, choice):
-        if choice == "standing water":
+        pass
+        if choice == "standing":
             self.current_question_index += 1
         elif choice == "slow" or choice == "fast":
             self.current_question_index += 2
@@ -104,13 +107,16 @@ class Questions:
             self.current_question_index += 1
         elif choice == "summer":
             self.current_question_index += 2
-        elif (choice == "snow" or choice == "rain" or "none") and ("winter" in self.selected_choices):
+        elif (choice == "snow" or choice == "rain" or choice == "none") and ("winter" in self.selected_choices):
             self.current_question_index += 2
         elif (choice == "below 10C" or choice == "above 10C") and ("autumn" in self.selected_choices):
             self.current_question_index += 1
         elif choice == "night":
             self.current_question_index += 1
-
+        elif ("running" in self.selected_choices) and (choice in ["getting warmer", "getting colder", "did not change"]):
+            self.current_question_index += 1
+        elif choice in ["deep", "shallow"]:
+            self.current_question_index += 1
 
     def next_question(self):
         selected_choice = self.choice_var.get()
@@ -151,7 +157,7 @@ class Questions:
             self.choices_menu.pack(pady=10)
 
             menu = self.choices_menu.nametowidget(self.choices_menu.menuname)
-            menu.configure(font=helvFontBold, background="khaki") 
+            menu.configure(font=helvFontBold, background="khaki")
 
             # Format items in menu
             for item in menu.winfo_children():
@@ -175,7 +181,7 @@ class Questions:
 
 
     def show_summary(self):
-        
+
         selected_choices = self.get_selected_choices()
 
         # Read XML data
@@ -227,7 +233,7 @@ class Questions:
                     recs += r + '\n'
 
         recommendations_text.insert("1.0",recs)
-        
+
         # Adjust the width and height of the text based on the content
         width = max(len(line) for line in recs.split('\n')) + 2
         height = recs.count('\n') + 1
@@ -243,8 +249,8 @@ class Questions:
                 image = PhotoImage(file=self.get_filename(r))
                 self.images.append(image)
                 label = tk.Label(self.master, image=image,
-                                compound=tk.TOP, text=r,
-                                font=helvFont, bg="khaki", bd=3)
+                                 compound=tk.TOP, text=r,
+                                 font=helvFont, bg="khaki", bd=3)
                 label.place(x=col, y=row)
                 if len(self.images) % 2 == 0:
                     col += image.width() + 50
