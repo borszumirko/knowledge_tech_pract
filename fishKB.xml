@@ -79,14 +79,6 @@
     <rule>
         <if>
             <speed>slow</speed>
-        </if>
-        <then>
-            <fishsize>big</fishsize>
-        </then>
-    </rule>
-
-    <rule>
-        <if>
             <depth>deep</depth>
         </if>
         <then>
@@ -96,6 +88,17 @@
 
     <rule>
         <if>
+            <water>standing</water>
+            <depth>deep</depth>
+        </if>
+        <then>
+            <fishsize>big</fishsize>
+        </then>
+    </rule>
+
+    <rule>
+        <if>
+            <water>standing</water>
             <depth>shallow</depth>
         </if>
         <then>
@@ -147,6 +150,112 @@
             <watertemp>below 10C</watertemp>
         </then>
     </rule>
+
+    <rule>
+        <if>
+            <lighting>light</lighting>
+        </if>
+        <then>
+            <colour>bright</colour>
+        </then>
+    </rule>
+
+    <rule>
+        <if>
+            <lighting>dark</lighting>
+        </if>
+        <then>
+            <colour>earth</colour>
+        </then>
+    </rule>
+
+    <!--bait rules from here-->
+    <rule>
+        <if>
+            <fishsize>big</fishsize>
+            <water>standing</water>
+            <waterTemp>below 10C</waterTemp>
+            <oxygenlevel>high</oxygenlevel>
+        </if>
+        <then>
+            <bait>sweet boilie</bait>
+        </then>
+    </rule>
+
+    <rule>
+        <if>
+            <fishsize>big</fishsize>
+            <water>standing</water>
+            <waterTemp>above 10C</waterTemp>
+            <oxygenlevel>low</oxygenlevel>
+        </if>
+        <then>
+            <bait>stinky boilie</bait>
+        </then>
+    </rule>
+
+    <rule>
+        <if>
+            <fishsize>big</fishsize>
+            <water>standing</water>
+            <waterTemp>above 10C</waterTemp>
+            <front>neutral</front>
+        </if>
+        <then>
+            <bait>stinky boilie</bait>
+        </then>
+    </rule>
+
+    <rule>
+        <if>
+            <fishsize>big</fishsize>
+            <water>standing</water>
+            <watertype>natural</watertype>
+            <time>night</time>
+        </if>
+        <then>
+            <bait>catfish lure</bait>
+        </then>
+    </rule>
+
+    <rule>
+        <if>
+            <colour>earth</colour>
+            <fishsize>big</fishsize>
+            <bottom>rocky</bottom>
+            <water>standing</water>
+
+        </if>
+        <then>
+            <bait>worm</bait>
+        </then>
+    </rule>
+
+    <rule>
+        <if>
+            <colour>earth</colour>
+            <fishsize>small</fishsize>
+            <bottom>rocky</bottom>
+            <water>standing</water>
+
+        </if>
+        <then>
+            <bait>maggot</bait>
+        </then>
+    </rule>
+
+    <rule>
+        <if>
+            <colour>bright</colour>
+            <water>running</water>
+            <speed>fast</speed>
+        </if>
+        <then>
+            <bait>fly</bait>
+        </then>
+    </rule>
+
+
 
     <!-- Recommendation rules -->
 
