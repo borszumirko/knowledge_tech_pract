@@ -31,9 +31,18 @@ class Questions:
 
         self.questions = [
             {"question": "Are you fishing at running water or standing water?", "choices": ["running water", "standing water"]},
+            {"question": "Is the running water slow (<8km/h) or fast (>8km/h)", "choices": ["slow", "fast"]},
+            {"question": "Is the standing water natural or arificial", "choices": ["natural", "artificial"]},
+            {"question": "What is the ground like at the bottom of the standing water?", "choices": ["muddy", "rocky"]},
+            {"question": "What is the current season?", "choices": ["winter", "autumn", "spring", "summer"]},
+            {"question": "Is there any kind of precipitation?", "choices": ["rain", "snow", "none"]},
             {"question": "Is the water temperature below or above 10C", "choices": ["below 10C", "above 10C"]},
+            {"question": "Is the humidity level high (>55%) or low (<55%)?", "choices": ["high", "low"]},
+            {"question": "Is there any wind if so, is It strong (>25km/h) or weak (<25km/h)?", "choices": ["no wind", "weak", "strong"]},
+            {"question": "Are you trying to fish during day or nighttime?", "choices": ["day", "night"]},
+            {"question": "Is the sky sunny or are there clouds?", "choices": ["sunny", "cloudy"]},
             {"question": "How did the temperature change in the previous days?", "choices": ["getting warmer", "getting colder", "did not change"]},
-            {"question": "Are you trying to fish during day or nighttime", "choices": ["day", "night"]},
+            {"question": "Is the water realatively deep (>5m) or shallow (<5m)?", "choices": ["deep", "shallow"]}
         ]
         self.setup()
 
@@ -86,11 +95,29 @@ class Questions:
         self.listbox = tk.Listbox(self.listbox_frame, font=helvFontBold, bg="khaki", fg="black", bd=3)
         self.listbox.pack()
 
+    def adjust_question_index(self, choice):
+        if choice == "standing water":
+            self.current_question_index += 1
+        elif choice == "slow" or choice == "fast":
+            self.current_question_index += 2
+        elif choice == "spring":
+            self.current_question_index += 1
+        elif choice == "summer":
+            self.current_question_index += 2
+        elif (choice == "snow" or choice == "rain" or "none") and ("winter" in self.selected_choices):
+            self.current_question_index += 2
+        elif (choice == "below 10C" or choice == "above 10C") and ("autumn" in self.selected_choices):
+            self.current_question_index += 1
+        elif choice == "night":
+            self.current_question_index += 1
+
 
     def next_question(self):
         selected_choice = self.choice_var.get()
         self.selected_choices.append(selected_choice)
         self.listbox.insert(tk.END, '• ' + selected_choice)
+
+        self.adjust_question_index(selected_choice)
 
         self.current_question_index += 1
 
