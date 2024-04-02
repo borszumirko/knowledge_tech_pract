@@ -98,18 +98,25 @@ class Questions:
     def adjust_question_index(self, choice):
         if choice == "standing water":
             self.current_question_index += 1
+            print(f"1 plus 1 based on {choice}")
         elif choice == "slow" or choice == "fast":
             self.current_question_index += 2
+            print(f"2 plus 2 based on {choice}")
         elif choice == "spring":
             self.current_question_index += 1
+            print(f"3 plus 1 based on {choice}")
         elif choice == "summer":
             self.current_question_index += 2
-        elif (choice == "snow" or choice == "rain" or "none") and ("winter" in self.selected_choices):
+            print(f"4 plus 2 based on {choice}")
+        elif (choice == "snow" or choice == "rain" or choice == "none") and ("winter" in self.selected_choices):
             self.current_question_index += 2
+            print(f"5 plus 2 based on {choice}")
         elif (choice == "below 10C" or choice == "above 10C") and ("autumn" in self.selected_choices):
             self.current_question_index += 1
+            print(f"6 plus 1 based on {choice}")
         elif choice == "night":
             self.current_question_index += 1
+            print(f"7 plus 1 based on {choice}")
 
 
     def next_question(self):
